@@ -1,19 +1,13 @@
-<html>
-    <head>
-        <title>My site in internet</title>
-    </head>
-    <body>
-        <div>
-            <h1><a href="/">My site in internet</a></h1>
-        </div>
-        <hr>
-        {% for post in posts %}
-        <div>
-            <em>published: {{ post.published_date }}</em>
-            <h2><a href="">{{ post.title }}</a></h2>
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    {% for post in posts %}
+        <div class="post">
+            <div class="date">
+                <p>Опубликовано: {{ post.published_date }}</p>
+            </div>
+            <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
             <p>{{ post.text|linebreaksbr }}</p>
-            <hr>
         </div>
-        {% endfor %}
-    </body>
-</html>
+    {% endfor %}
+{% endblock %}
